@@ -105,7 +105,7 @@
         };
 
         combo_al {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <25 33>;
             bindings = <&caps_word>;
         };
@@ -330,7 +330,7 @@
         compatible = "zmk,keymap";
 
         default_layer {
-            display-name = "default";
+            display-name = "Base";
             
 // ------------------------------------------------------------------------------------------------------------
 // |   `   |  1  |  2  |  3   |  4   |  5   |                   |  6   |  7    |  8    |  9   |   0   |       |
@@ -347,10 +347,11 @@
                                                                                      &bootloader &kp B  &kp C &kp D  &kp E
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP &inc_dec_kp PG_UP PG_DN>;
         };
 
         gmng_layer {
+            display-name = "Gaming";
 // ----------------------------------------------------------------------------------------------------------------------------
 // |        |         |         |         |         |         |                  |      |      |       |      |       |       |
 // |        |         |         |         |         |         |                  |      |      |       |      |       |       |
@@ -371,7 +372,7 @@
         };
 
         lower_layer {
-            display-name = "lower";
+            display-name = "Space";
 // ----------------------------------------------------------------------------------------------------------------------------
 // |        |         |         |         |         |         |                  |      |      |       |      |       |       |
 // |        |         |         |         |         |         |                  |      |      |       |      |       |       |
@@ -381,8 +382,8 @@
 
             bindings = <
 &kp LC(F12)       &kp F1          &kp F2          &kp F3          &kp F4          &kp F5                                            &kp F6          &kp F7          &kp F8          &kp F9          &kp F10         &none
-&none             &kp LG(TAB)     &kp HOME        &kp UP          &kp END         &kp PSCRN                                         &none           &none           &none           &kp F11         &kp F12         &none
-&kp LSHFT         &none           &kp LEFT        &kp DOWN        &kp RIGHT       &kp LA(F4)                                        &none           &bt BT_SEL 0    &bt BT_SEL 1    &none           &none           &none
+&none             &kp LG(TAB)     &kp HOME        &kp UP          &kp END         &kp PSCRN                                         &none           &kp RA(F)       &kp RA(G)       &kp F11         &kp F12         &none
+&kp LSHFT         &none           &kp LEFT        &kp DOWN        &kp RIGHT       &kp LA(F4)                                        &none           &none           &none           &none           &none           &none
 &kp LCTL          &none           &kp LBKT        &kp RBKT        &none           &none            &none                            &none           &none           &none           &none           &none           &none
                                   &none           &none           &none           &none            &none           &none            &mo RAISE       &none           &none           &none
                                                                                                                     &kp A      &kp B  &kp C &kp D  &kp E
@@ -391,7 +392,7 @@
         };
 
         raise_layer {
-            display-name = "raise";
+            display-name = "Symbol";
 // ----------------------------------------------------------------------------------------------------------------------------
 // |        |         |         |         |         |         |                  |      |      |       |      |       |       |
 // |        |         |         |         |         |         |                  |      |      |       |      |       |       |
@@ -412,6 +413,7 @@
         };
 
         adjust_layer {
+            display-name = "Adjust";
 // ----------------------------------------------------------------------------------------------------------------------------
 // |        |         |         |         |         |         |                  |      |      |       |      |       |       |
 // |        |         |         |         |         |         |                  |      |      |       |      |       |       |
@@ -430,6 +432,7 @@
         };
 
         w_layer {
+            display-name = "W_Layer";
 // ----------------------------------------------------------------------------------------------------------------------------
 // |        |         |         |         |         |         |                  |      |      |       |      |       |       |
 // |        |         |         |         |         |         |                  |      |      |       |      |       |       |
@@ -448,6 +451,7 @@
         };
         
         e_layer {
+            display-name = "E_Layer";
 // ----------------------------------------------------------------------------------------------------------------------------
 // |        |         |         |         |         |         |                  |      |      |       |      |       |       |
 // |        |         |         |         |         |         |                  |      |      |       |      |       |       |
@@ -456,11 +460,11 @@
 //                    |         |         |         |         |         | |      |      |      |       |      |
 
             bindings = <
-&none             &none           &none            &none            &none             &none                                               &none           &none           &none           &none           &none           &none
+&none             &none           &none            &none            &bt BT_SEL 0      &bt BT_SEL 1                                        &none           &none           &none           &none           &none           &none
 &none             &none           &kp LC(LG(LEFT)) &none            &kp LC(LG(RIGHT)) &kp LC(Z)                                           &none           &none           &none           &none           &none           &none
 &kp LG(TAB)       &kp LC(F)       &kp LG(LS(LEFT)) &none            &kp LG(LS(RIGHT)) &kp LC(Y)                                           &none           &none           &none           &none           &none           &none
 &none             &none           &none            &none            &none             &none             &none                             &none           &none           &none           &none           &none           &none
-                                  &none            &none            &kp C_NEXT        &kp LGUI          &kp ENTER        &none            &none           &none           &none           &none
+                                  &none            &none            &kp C_NEXT        &kp LGUI          &kp ENTER        &bt BT_SEL 0     &bt BT_SEL 1    &none           &none           &none
                                                                                                                     &kp A      &kp B  &kp C &kp D  &kp E
             >;
         };
