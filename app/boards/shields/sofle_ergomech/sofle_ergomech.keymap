@@ -27,6 +27,12 @@
     tapping-term-ms = <200>;
 };
 
+&sk {
+    release-after-ms = <2000>;
+    quick-release;
+    /delete-property/ ignore-modifiers;
+};
+
 / {
     combos {
         compatible = "zmk,combos";
@@ -40,6 +46,12 @@
             timeout-ms = <25>;
             key-positions = <15 16>;
             bindings = <&kp M>;
+        };
+
+        combo_off {
+            timeout-ms = <25>;
+            key-positions = <0 11>;
+            bindings = <&kp C_POWER>;
         };
 
         combo_o {
@@ -98,7 +110,7 @@
         };
 
         combo_we {
-            timeout-ms = <50>;
+            timeout-ms = <30>;
             key-positions = <14 15>;
             bindings = <&kp ESC>;
             layers = <0 2 3 4 5 6>; 
@@ -108,6 +120,24 @@
             timeout-ms = <30>;
             key-positions = <25 33>;
             bindings = <&caps_word>;
+        };
+
+        combo_wk {
+            timeout-ms = <50>;
+            key-positions = <14 32>;
+            bindings = <&kp CAPS>;
+        };
+
+        combo_wl {
+            timeout-ms = <50>;
+            key-positions = <14 33>;
+            bindings = <&kp TAB>;
+        };
+
+        combo_45 {
+            timeout-ms = <50>;
+            key-positions = <4 5>;
+            bindings = <&kp LC(LS(ESC))>;
         };
     };
 };
@@ -154,6 +184,17 @@
             require-prior-idle-ms = <125>;
             flavor = "tap-preferred";
             bindings = <&mo>, <&kp>;
+        };
+    };
+
+    behaviors {
+        lshift: lshift_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <400>;
+            quick-tap-ms = <200>;
+            bindings = <&kp>, <&sk>;
         };
     };
     
@@ -324,7 +365,7 @@
             if-layers = <LOWER RAISE>;
             then-layer = <ADJUST>;
         };
-    };
+    }; 
 
     keymap {
         compatible = "zmk,keymap";
@@ -339,11 +380,11 @@
 // | SHIFT |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  |       |  N   |  M    |  ,    |  .   |   /   | SHIFT |
 //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
             bindings = <
-&kp ESC   &kp N1       &kp N2       &kp N3         &kp N4       &kp N5                            &kp N6          &kp N7    &kp N8    &kp N9    &kp N0     &kp BACKSPACE
-&kp TAB   &kp Q        &lt WLAYER W &lt ELAYER E   &kp R        &kp T                             &kp Y           &kp U     &kp I     &kp O     &kp P      &quotation
-&kp LSHFT &kp A        &kp S        &mod_d         &mod_f       &mod_g                            &kp H           &mod_j    &mod_k    &kp L     &u_exclam  &kp ENTER
-&kp LCTRL &ctrl_z      &kp X        &kp C          &kp V        &kp B            &bootloader      &kp N           &kp M     &kp COMMA &kp DOT   &kp FSLH   &kp RSHFT
-                       &kp RET      &ctrl_x        &ctrl_x      &ctrl_c  &ctrl_v                             &bspc_hacek    &mo RAISE &kp RCTRL &git_macro &tog GAMING
+&kp ESC             &kp N1       &kp N2       &kp N3         &kp N4       &kp N5                            &kp N6          &kp N7    &kp N8    &kp N9    &kp N0     &kp BACKSPACE
+&kp TAB             &kp Q        &lt WLAYER W &lt ELAYER E   &kp R        &kp T                             &kp Y           &kp U     &kp I     &kp O     &kp P      &quotation
+&lshift LSHFT LSHFT &kp A        &kp S        &mod_d         &mod_f       &mod_g                            &kp H           &mod_j    &mod_k    &kp L     &u_exclam  &kp ENTER
+&kp LCTRL           &ctrl_z      &kp X        &kp C          &kp V        &kp B            &bootloader      &kp N           &kp M     &kp COMMA &kp DOT   &kp FSLH   &kp RSHFT
+                       &kp RET      &ctrl_x        &ctrl_x      &ctrl_c  &ctrl_v                             &bspc_hacek    &sl RAISE &kp RCTRL &git_macro &tog GAMING
                                                                                      &bootloader &kp B  &kp C &kp D  &kp E
             >;
 
@@ -361,8 +402,8 @@
 
             bindings = <
 &kp ESC           &kp N1          &kp N2          &kp N3          &kp N4          &kp N5                                            &kp N6          &kp N7          &kp N8          &kp N9          &kp N0          &kp BACKSPACE
-&kp TAB           &kp Q           &lt WLAYER W    &kp E           &kp R           &kp T                                             &kp Y           &kp U           &kp I           &kp O           &kp P           &quotation
-&kp LSHFT         &kp A           &kp S           &kp D           &kp F           &kp G                                             &kp H           &kp J           &kp K           &kp L           &none           &kp ENTER
+&kp TAB           &kp Q           &kp W           &kp E           &kp R           &kp T                                             &kp Y           &kp U           &kp I           &kp O           &kp P           &quotation
+&kp LSHFT         &kp A           &kp S           &kp D           &kp F           &kp G                                             &kp H           &kp J           &kp K           &kp L           &u_exclam       &kp ENTER
 &kp LCTL          &kp Z           &kp X           &kp C           &kp V           &kp B            &none                            &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH        &none
                                   &none            &none            &kp ESC           &kp SPACE   &kp LCTL         &bspc_hacek      &mo RAISE       &none           &none           &tog GAMING
                                                                                                                     &kp A      &kp B  &kp C &kp D  &kp E
@@ -444,7 +485,7 @@
 &none             &none           &kp U           &kp U           &kp O           &kp P                                             &bt BT_CLR      &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &none           &kp LNLCK
 &none             &none           &kp DEL         &kp DEL         &kp H           &kp LS(SLASH)                                     &none           &kp KP_N7       &kp KP_N8       &kp KP_N9       &none           &none
 &kp LG(TAB)       &kp N           &kp MINUS       &kp K           &kp BSPC        &kp J                                             &td1            &kp KP_N4       &kp KP_N5       &kp KP_N6       &none           &none
-&none             &none           &none           &kp LC(FSLH)    &kp LC(N1)      &none            &none                            &td0            &kp KP_N1       &kp KP_N2       &kp KP_N3       &none           &git_macro
+&none             &none           &none           &kp LC(FSLH)    &kp LC(N1)      &kp L            &none                            &td0            &kp KP_N1       &kp KP_N2       &kp KP_N3       &none           &git_macro
                                   &none           &none           &kp PLUS        &kp SPACE        &kp DOT         &kp BSPC         &kp KP_N0       &kp TAB         &none           &none
                                                                                                                     &kp A      &kp B  &kp C &kp D  &kp E
             >;
@@ -457,7 +498,7 @@
 // |        |         |         |         |         |         |                  |      |      |       |      |       |       |
 // |        |         |         |         |         |         |                  |      |      |       |      |       |       |
 // |        |         |         |         |         |         |         | |      |      |      |       |      |       |       |
-//                    |         |         |         |         |         | |      |      |      |       |      |
+//                    |         |         |         |         |         | |      |      |      |       |      |clo
 
             bindings = <
 &none             &none           &none            &none            &bt BT_SEL 0      &bt BT_SEL 1                                        &none           &none           &none           &none           &none           &none
