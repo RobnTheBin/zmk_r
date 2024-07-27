@@ -17,6 +17,7 @@
 #define ADJUST 4
 #define WLAYER 5
 #define ELAYER 6
+#define NLAYER 7
 
 &caps_word {
     continue-list = <UNDERSCORE MINUS LS(SLASH) BACKSPACE>;
@@ -106,7 +107,7 @@
             timeout-ms = <50>;
             key-positions = <15 26 28>;
             bindings = <&kp F5>;
-            layers = <0 2 3 4 5 6>; 
+            layers = <0 2 3 4 5 6>;  
         };
 
         combo_we {
@@ -125,13 +126,13 @@
         combo_wk {
             timeout-ms = <50>;
             key-positions = <14 32>;
-            bindings = <&kp CAPS>;
+            bindings = <&kp TAB>;
         };
 
         combo_wl {
             timeout-ms = <50>;
             key-positions = <14 33>;
-            bindings = <&kp TAB>;
+            bindings = <&kp CAPS>;
         };
 
         combo_45 {
@@ -212,7 +213,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <300>;
-            bindings = <&kp KP_MINUS>, <&kp KP_PLUS>;
+            bindings = <&kp KP_MINUS>, <&kp KP_PLUS>; 
         };
     };
 
@@ -230,7 +231,7 @@
         bspc_hacek: backspace_hacek {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp BACKSPACE>, <&kp EQUAL>;
+            bindings = <&kp ENTER>, <&kp EQUAL>;
             mods = <(MOD_LSFT|MOD_RSFT)>;
             keep-mods = <(MOD_LSFT)>;
         };
@@ -267,6 +268,15 @@
     };
 
     behaviors {
+        bspc_del: bspc_del {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp BACKSPACE>, <&kp DEL>;
+            mods = <(MOD_LSFT)>;
+        };
+    };
+
+    behaviors {
         ctrl_v: ctrl_v {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
@@ -280,7 +290,7 @@
         ctrl_x: ctrl_x {
             compatible = "zmk,behavior-mod-morph";
             #binding-cells = <0>;
-            bindings = <&kp ESC>, <&kp X>;
+            bindings = <&sl NLAYER>, <&kp X>;
             mods = <(MOD_LCTL)>;
             keep-mods = <(MOD_LCTL)>;
         };
@@ -359,13 +369,13 @@
  
 
    // Activate ADJUST layer by pressing raise and lower
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        adjust_layer {
-            if-layers = <LOWER RAISE>;
-            then-layer = <ADJUST>;
-        };
-    }; 
+    //conditional_layers {
+    //    compatible = "zmk,conditional-layers";
+    //    adjust_layer {
+    //        if-layers = <LOWER RAISE>;
+    //        then-layer = <ADJUST>;
+    //    };
+    //}; 
 
     keymap {
         compatible = "zmk,keymap";
@@ -380,11 +390,11 @@
 // | SHIFT |  Z  |  X  |  C   |  V   |  B   |  MUTE  |  |       |  N   |  M    |  ,    |  .   |   /   | SHIFT |
 //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
             bindings = <
-&kp ESC             &kp N1       &kp N2       &kp N3         &kp N4       &kp N5                            &kp N6          &kp N7    &kp N8    &kp N9    &kp N0     &kp BACKSPACE
-&kp TAB             &kp Q        &lt WLAYER W &lt ELAYER E   &kp R        &kp T                             &kp Y           &kp U     &kp I     &kp O     &kp P      &quotation
-&lshift LSHFT LSHFT &kp A        &kp S        &mod_d         &mod_f       &mod_g                            &kp H           &mod_j    &mod_k    &kp L     &u_exclam  &kp ENTER
-&kp LCTRL           &ctrl_z      &kp X        &kp C          &kp V        &kp B            &bootloader      &kp N           &kp M     &kp COMMA &kp DOT   &kp FSLH   &kp RSHFT
-                       &kp RET      &ctrl_x        &ctrl_x      &ctrl_c  &ctrl_v                             &bspc_hacek    &sl RAISE &kp RCTRL &git_macro &tog GAMING
+&kp ESC             &kp N1       &kp N2       &kp N3         &kp N4       &kp N5                            &kp N6          &kp N7      &kp N8    &kp N9    &kp N0     &kp BACKSPACE
+&kp TAB             &kp Q        &lt WLAYER W &lt ELAYER E   &kp R        &kp T                             &kp Y           &kp U       &kp I     &kp O     &kp P      &quotation
+&lshift LSHFT LSHFT &kp A        &kp S        &mod_d         &mod_f       &mod_g                            &kp H           &mod_j      &mod_k    &kp L     &u_exclam  &kp ENTER
+&kp LCTRL           &ctrl_z      &kp X        &kp C          &kp V        &kp B            &kp C_MUTE       &kp N           &kp M       &kp COMMA &kp DOT   &kp FSLH   &kp RSHFT
+                       &kp RET      &ctrl_x        &ctrl_x      &ctrl_c  &ctrl_v                            &bspc_del      &sl RAISE   &sl ADJUST &git_macro &tog GAMING
                                                                                      &bootloader &kp B  &kp C &kp D  &kp E
             >;
 
@@ -405,7 +415,7 @@
 &kp TAB           &kp Q           &kp W           &kp E           &kp R           &kp T                                             &kp Y           &kp U           &kp I           &kp O           &kp P           &quotation
 &kp LSHFT         &kp A           &kp S           &kp D           &kp F           &kp G                                             &kp H           &kp J           &kp K           &kp L           &u_exclam       &kp ENTER
 &kp LCTL          &kp Z           &kp X           &kp C           &kp V           &kp B            &none                            &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH        &none
-                                  &none            &none            &kp ESC           &kp SPACE   &kp LCTL         &bspc_hacek      &mo RAISE       &none           &none           &tog GAMING
+                                  &none            &none            &kp ESC           &kp SPACE   &kp LCTL         &bspc_del       &mo RAISE       &none           &none           &tog GAMING
                                                                                                                     &kp A      &kp B  &kp C &kp D  &kp E
             >;
 
@@ -423,8 +433,8 @@
 
             bindings = <
 &kp LC(F12)       &kp F1          &kp F2          &kp F3          &kp F4          &kp F5                                            &kp F6          &kp F7          &kp F8          &kp F9          &kp F10         &none
-&none             &kp LG(TAB)     &kp HOME        &kp UP          &kp END         &kp PSCRN                                         &none           &kp RA(F)       &kp RA(G)       &kp F11         &kp F12         &none
-&kp LSHFT         &none           &kp LEFT        &kp DOWN        &kp RIGHT       &kp LA(F4)                                        &none           &none           &none           &none           &none           &none
+&kp LC(LS(F12))   &kp LG(TAB)     &kp HOME        &kp UP          &kp END         &kp PSCRN                                         &none           &kp RA(F)       &kp RA(G)       &kp F11         &kp F12         &none
+&kp LSHFT         &kp LGUI        &kp LEFT        &kp DOWN        &kp RIGHT       &kp LA(F4)                                        &none           &none           &none           &none           &none           &none
 &kp LCTL          &none           &kp LBKT        &kp RBKT        &none           &none            &none                            &none           &none           &none           &none           &none           &none
                                   &none           &none           &none           &none            &none           &none            &mo RAISE       &none           &none           &none
                                                                                                                     &kp A      &kp B  &kp C &kp D  &kp E
@@ -446,7 +456,7 @@
 &kp RA(N1)         &kp RA(B)       &kp LS(RBKT)    &kp RBKT        &kp RA(N)       &kp RA(SEMI)                                      &kp GRAVE       &kp HOME        &kp UP          &kp END         &none           &none
 &bhm LSHFT RA(X)   &kp LS(DOT)     &kp MINUS       &mod_und        &mod_at         &kp KP_MULTIPLY                                   &kp N1          &kp LEFT        &kp DOWN        &kp RIGHT       &kp FSLH        &none
 &kp LCTL           &kp RA(COMMA)   &kp RA(W)       &kp FSLH        &kp RA(DOT)     &kp RA(Q)        &none                            &kp LG(DOT)     &kp RA(F)       &kp RA(G)       &none           &none           &none
-                                   &kp RA(F)       &kp RA(G)       &kp N1          &kp LS(LBRC)     &kp LS(MINUS)   &none            &none           &none           &none           &none
+                                   &kp RA(F)       &kp RA(G)       &kp N1          &kp LS(LBRC)     &kp LS(MINUS)   &kp BACKSPACE    &kp LS(EQUAL)   &none           &none           &none
                                                                                                                     &kp A      &kp B  &kp C &kp D  &kp E
             >;
 
@@ -467,7 +477,7 @@
 &none             &none           &none           &none           &none           &none                                             &none           &none           &none           &none           &none           &none
 &none             &none           &none           &none           &none           &none                                             &none           &none           &none           &none           &none           &none
 &none             &none           &none           &none           &none           &none            &none                            &none           &none           &none           &none           &none           &none
-                                  &none           &none           &none           &none            &none           &none            &none           &none           &none           &none
+                                  &none           &none           &none           &none            &none           &none            &none           &kp LS(EQUAL)   &none           &none
                                                                                                                     &kp A      &kp B  &kp C &kp D  &kp E
             >;
         };
@@ -504,11 +514,29 @@
 &none             &none           &none            &none            &bt BT_SEL 0      &bt BT_SEL 1                                        &none           &none           &none           &none           &none           &none
 &none             &none           &kp LC(LG(LEFT)) &none            &kp LC(LG(RIGHT)) &kp LC(Z)                                           &none           &none           &none           &none           &none           &none
 &kp LG(TAB)       &kp LC(F)       &kp LG(LS(LEFT)) &none            &kp LG(LS(RIGHT)) &kp LC(Y)                                           &none           &none           &none           &none           &none           &none
-&none             &none           &none            &none            &none             &none             &none                             &none           &none           &none           &none           &none           &none
+&none             &none           &none            &none            &none             &kp LG(UP)    &none                             &none           &none           &none           &none           &none           &none
                                   &none            &none            &kp C_NEXT        &kp LGUI          &kp ENTER        &bt BT_SEL 0     &bt BT_SEL 1    &none           &none           &none
                                                                                                                     &kp A      &kp B  &kp C &kp D  &kp E
             >;
         };
 
+        num_layer {
+            display-name = "Numbers";
+// ----------------------------------------------------------------------------------------------------------------------------
+// |        |         |         |         |         |         |                  |      |      |       |      |       |       |
+// |        |         |         |         |         |         |                  |      |      |       |      |       |       |
+// |        |         |         |         |         |         |                  |      |      |       |      |       |       |
+// |        |         |         |         |         |         |         | |      |      |      |       |      |       |       |
+//                    |         |         |         |         |         | |      |      |      |       |      |
+
+            bindings = <
+&bootloader       &none           &none          &none           &none         &none                                             &bt BT_CLR      &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &none           &kp LNLCK
+&none             &none           &kp KP_PLUS    &kp KP_MULTIPLY &kp KP_DIVIDE &none                                             &none           &kp KP_N7       &kp KP_N8       &kp KP_N9       &none           &none
+&none             &none           &kp KP_MINUS   &kp DOT         &kp SPACE     &none                                             &td1            &kp KP_N4       &kp KP_N5       &kp KP_N6       &none           &none
+&none             &none           &none          &none           &none         &none            &none                            &td0            &kp KP_N1       &kp KP_N2       &kp KP_N3       &none           &git_macro
+                                  &none           &none          &none         &none            &kp DOT         &kp BSPC         &kp KP_N0       &kp TAB         &none           &none
+                                                                                                                    &kp A      &kp B  &kp C &kp D  &kp E
+            >;
+        };
     };
 };
