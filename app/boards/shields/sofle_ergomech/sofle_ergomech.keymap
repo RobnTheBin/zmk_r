@@ -47,6 +47,7 @@
             timeout-ms = <25>;
             key-positions = <15 16>;
             bindings = <&kp M>;
+            layers = <0 2 3 4 5 6>;  
         };
 
         combo_off {
@@ -59,12 +60,14 @@
             timeout-ms = <50>;
             key-positions = <26 28>;
             bindings = <&kp O>;
+            layers = <0 2 3 4 5 6>;  
         };
 
         combo_i {
             timeout-ms = <50>;
             key-positions = <26 27 28>;
             bindings = <&kp I>;
+            layers = <0 2 3 4 5 6>;  
         };
 
         combo_task {
@@ -101,6 +104,7 @@
             timeout-ms = <50>;
             key-positions = <15 53>;
             bindings = <&kp LG(E)>;
+            layers = <0 2 3 4 5 6>;  
         };
 
         combo_esc {
@@ -132,7 +136,7 @@
         combo_wl {
             timeout-ms = <50>;
             key-positions = <14 33>;
-            bindings = <&kp CAPS>;
+            bindings = <&kp CAPS>; 
         };
 
         combo_45 {
@@ -415,7 +419,7 @@
 &kp TAB           &kp Q           &kp W           &kp E           &kp R           &kp T                                             &kp Y           &kp U           &kp I           &kp O           &kp P           &quotation
 &kp LSHFT         &kp A           &kp S           &kp D           &kp F           &kp G                                             &kp H           &kp J           &kp K           &kp L           &u_exclam       &kp ENTER
 &kp LCTL          &kp Z           &kp X           &kp C           &kp V           &kp B            &none                            &kp N           &kp M           &kp COMMA       &kp DOT         &kp FSLH        &none
-                                  &none            &none            &kp ESC           &kp SPACE   &kp LCTL         &bspc_del       &mo RAISE       &none           &none           &tog GAMING
+                                  &none            &none            &kp TAB           &kp SPACE   &sk LCTL         &bspc_del       &mo RAISE       &none           &none           &tog GAMING
                                                                                                                     &kp A      &kp B  &kp C &kp D  &kp E
             >;
 
@@ -452,9 +456,9 @@
 //                    |         |         |         |         |         | |      |      |      |       |      |
 
             bindings = <
-&none              &none           &kp LS(BSLH)    &kp LS(COLON)   &kp GRAVE       &kp RA(C)                                         &none           &none           &none           &none           &none           &none 
-&kp RA(N1)         &kp RA(B)       &kp LS(RBKT)    &kp RBKT        &kp RA(N)       &kp RA(SEMI)                                      &kp GRAVE       &kp HOME        &kp UP          &kp END         &none           &none
-&bhm LSHFT RA(X)   &kp LS(DOT)     &kp MINUS       &mod_und        &mod_at         &kp KP_MULTIPLY                                   &kp N1          &kp LEFT        &kp DOWN        &kp RIGHT       &kp FSLH        &none
+&none              &none           &none           &none           &none           &none                                             &none           &none           &none           &none           &none           &none 
+&kp RA(N1)         &kp GRAVE       &kp LS(RBKT)    &kp RBKT        &kp LS(COLON)   &kp RA(SEMI)                                      &kp FSLH        &kp HOME        &kp UP          &kp END         &none           &none
+&bhm LSHFT RA(X)   &kp GRAVE       &kp MINUS       &mod_und        &mod_at         &kp KP_MULTIPLY                                   &kp N1          &kp LEFT        &kp DOWN        &kp RIGHT       &sl ADJUST      &none
 &kp LCTL           &kp RA(COMMA)   &kp RA(W)       &kp FSLH        &kp RA(DOT)     &kp RA(Q)        &none                            &kp LG(DOT)     &kp RA(F)       &kp RA(G)       &none           &none           &none
                                    &kp RA(F)       &kp RA(G)       &kp N1          &kp LS(LBRC)     &kp LS(MINUS)   &kp BACKSPACE    &kp LS(EQUAL)   &none           &none           &none
                                                                                                                     &kp A      &kp B  &kp C &kp D  &kp E
@@ -464,20 +468,20 @@
         };
 
         adjust_layer {
-            display-name = "Adjust";
+            display-name = "Symbol+";
 // ----------------------------------------------------------------------------------------------------------------------------
 // |        |         |         |         |         |         |                  |      |      |       |      |       |       |
 // |        |         |         |         |         |         |                  |      |      |       |      |       |       |
 // |        |         |         |         |         |         |                  |      |      |       |      |       |       |
 // |        |         |         |         |         |         |         | |      |      |      |       |      |       |       |
-//                    |         |         |         |         |         | |      |      |      |       |      |
+//                    |         |         |         |         |         | |      |      |  =   |       |      |
 
             bindings = <
 &none             &none           &none           &none           &none           &none                                             &none           &none           &none           &none           &none           &none
-&none             &none           &none           &none           &none           &none                                             &none           &none           &none           &none           &none           &none
-&none             &none           &none           &none           &none           &none                                             &none           &none           &none           &none           &none           &none
+&none             &none           &kp RA(B)       &kp RA(N)       &kp LS(BSLH)    &kp RA(C)                                         &none           &none           &kp LS(EQUAL)   &none           &none           &none
+&none             &kp LS(DOT)     &kp N1          &kp FSLH        &none           &none                                             &none           &none           &none           &none           &none           &none
 &none             &none           &none           &none           &none           &none            &none                            &none           &none           &none           &none           &none           &none
-                                  &none           &none           &none           &none            &none           &none            &none           &kp LS(EQUAL)   &none           &none
+                                  &none           &none           &none           &none            &none           &none            &none           &none           &none           &none
                                                                                                                     &kp A      &kp B  &kp C &kp D  &kp E
             >;
         };
@@ -485,11 +489,11 @@
         w_layer {
             display-name = "W_Layer";
 // ----------------------------------------------------------------------------------------------------------------------------
-// |        |         |         |         |         |         |                  |      |      |       |      |       |       |
-// |        |         |         |         |         |         |                  |      |      |       |      |       |       |
-// |        |         |         |         |         |         |                  |      |      |       |      |       |       |
-// |        |         |         |         |         |         |         | |      |      |      |       |      |       |       |
-//                    |         |         |         |         |         | |      |      |      |       |      |
+// |        |         |    U    |    U    |    O    |    P    |                  |  BT_CLR |  BT_SEL 0 |  BT_SEL 1 |  BT_SEL 2 |         | NUMLCK |
+// |        |         |   DEL   |   DEL   |    H    | LS(SLASH)|                 |         |  KP_N7   |  KP_N8    |  KP_N9    |         |        |
+// | LG(TAB)|    N    |  MINUS  |    K    |  BSPC   |    J    |                  |   td1   |  KP_N4   |  KP_N5    |  KP_N6    |         |        |
+// |        |         |         | LC(FSLH)| LC(N1)  |    L    |         | |      |   td0   |  KP_N1   |  KP_N2    |  KP_N3    |         |git_macro|
+//                    |         |         |  PLUS   |  SPACE  |   DOT   | | BSPC |  KP_N0  |   TAB    |           |           |
 
             bindings = <
 &none             &none           &kp U           &kp U           &kp O           &kp P                                             &bt BT_CLR      &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &none           &kp LNLCK
@@ -530,10 +534,10 @@
 //                    |         |         |         |         |         | |      |      |      |       |      |
 
             bindings = <
-&bootloader       &none           &none          &none           &none         &none                                             &bt BT_CLR      &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &none           &kp LNLCK
-&none             &none           &kp KP_PLUS    &kp KP_MULTIPLY &kp KP_DIVIDE &none                                             &none           &kp KP_N7       &kp KP_N8       &kp KP_N9       &none           &none
+&bootloader       &none           &none          &none           &none         &none                                             &bt BT_CLR      &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &none           &kp KP_NUM
+&none             &none           &kp KP_PLUS    &kp KP_MULTIPLY &kp KP_DIVIDE &kp MINUS                                         &none           &kp KP_N7       &kp KP_N8       &kp KP_N9       &none           &none
 &none             &kp TAB         &kp KP_MINUS   &kp DOT         &kp SPACE     &kp LS(DOT)                                       &td1            &kp KP_N4       &kp KP_N5       &kp KP_N6       &none           &none
-&none             &none           &none          &none           &none         &none            &none                            &td0            &kp KP_N1       &kp KP_N2       &kp KP_N3       &none           &git_macro
+&none             &none           &none          &kp COMMA       &none         &none            &none                            &td0            &kp KP_N1       &kp KP_N2       &kp KP_N3       &none           &git_macro
                                   &none           &none          &none         &none            &kp DOT         &kp BSPC         &kp KP_N0       &kp TAB         &none           &none
                                                                                                                     &kp A      &kp B  &kp C &kp D  &kp E
             >;
